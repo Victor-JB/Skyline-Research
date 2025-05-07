@@ -1,0 +1,1 @@
+% returns 3‑D gust vector using MATLAB’s Dryden or von‑Kármán model keyed on altitude & seed.

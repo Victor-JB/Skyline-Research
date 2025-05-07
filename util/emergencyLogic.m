@@ -1,0 +1,1 @@
+% monitors SOC < reserve, GPS loss, or comm timeout and forces the guidance FSM path to the nearest landing site. Tie in parachute deployment trigger if altitude > 30 m and total power failure.

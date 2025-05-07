@@ -1,0 +1,1 @@
+% constructs a Simscape Battery (Li‑ion equivalent‑circuit) block and plumbs its SOC output into the guidance FSM.
