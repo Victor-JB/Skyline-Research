@@ -1,0 +1,20 @@
+Note dependencies:
+1. Need UAV drone delivery
+2. also need Aerospace Blockset to do cool airplane math
+- https://www.mathworks.com/products/aerospace-blockset.html
+
+Following: https://www.mathworks.com/help/uav/ug/uav-package-delivery.html
+
+openExample('uav/UAVPackageDeliveryExample');
+prj = openProject('uavPackageDelivery');
+
+Click "getting started" shortcut
+** had to address Failed to load library 'aerolibconvert2' referenced by **
+
+Install QGround control and click Connecting to a GCS, then upload flight plan and run it
+
+Click Setting a Cuboid Scenario -- also sets up lidar point cloud to "see" cuboid obstacles
+** had to address Failed to load library 'robotalgslib' referenced by **
+** Cannot find library called 'robotalgslib'. To use this library, install one of the following 
+products: Navigation Toolbox Robotics System Toolbox **
+
