@@ -1,0 +1,6 @@
+1. wind direction -- xyz, gusting
+2. weight / cg of package
+3. battery performance
+4. humidity
+5. temperature
+6. bird / air obstacles
