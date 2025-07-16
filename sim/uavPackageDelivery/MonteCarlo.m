@@ -37,13 +37,14 @@ load_system('MultirotorModel');
 set_param('MultirotorModel','EnablePacing', 'off');
 
 % Simulation Stop Time
-simTime = 100;
+simTime = 75;
 
 numRuns = 1;  % Set how many runs you want
 
 errors = zeros(1, numRuns);
  results = repmat(struct( ...
     'mass', [], ...
+    'perturbation', [], ...
     'wind', [], ...
     'windMag', [], ...
     'motor_delay', [], ...
@@ -58,14 +59,32 @@ for i = 1:numRuns
 
     % Randomized Parameters
 
+    % Random perturbation between -10% and +10%
+    mass_perturbation = 0;%(rand() * 0.2) - 0.1;  % range [-0.1, +0.1]
+
     % Mass (scaled from 3–8 kg to Simulink model input)
-    input_mass = 3 + (8 - 3) * rand();
+    input_mass = 6;%3 + (7 - 3) * rand();
     mass_param = Simulink.Parameter(input_mass);
     mass_param.CoderInfo.StorageClass = 'ExportedGlobal';
     assignin('base', 'mass_param', mass_param);
+    ctrl_mass = input_mass * (1 + mass_perturbation);
+    assignin('base', 'ctrl_mass_param', Simulink.Parameter(ctrl_mass));
+
+    % Inertia
+    m = input_mass;
+    x = 0.325;
+    y = 0.325;
+    z = 0.1;
+    
+    Ixx = (1/12)*m*(y^2 + z^2);
+    Iyy = (1/12)*m*(x^2 + z^2);
+    Izz = (1/12)*m*(x^2 + y^2);
+
+    inertia_matrix = diag([Ixx, Iyy, Izz]);
+    assignin('base', 'inertia_param', Simulink.Parameter(inertia_matrix));
 
     % Base Wind (±7, ±7, ±2)
-    baseWindRange = [0; 0; 0];
+    baseWindRange = [0;0;0];%[8; 8; 2];
     baseWind = baseWindRange .* (2 * rand(3,1) - 1);  % [-7, 7], [-7, 7], [-2, 2]
     
     % Time setup
@@ -107,19 +126,23 @@ for i = 1:numRuns
     assignin('base', 'baro_drift_signal', baro_drift_signal);
 
     % Motor Delay (prevent negative)
-    motor_delay_time = max(0, 0.015 + 0.005 * randn);
+    motor_delay_time = min(0.1, max(0, 0.015 + 0.005 * randn));
     assignin('base', 'motor_delay_time', motor_delay_time);
+
+    % Thrust perturbation between -10% and +10%
+    thrust_perturbation = 0;%(rand() * 0.2) - 0.1;  % range [-0.1, +0.1]
+    ctrl_thrust_perturbation = 1 + thrust_perturbation;
+    assignin('base', 'ctrl_thrust_perturbation_param', Simulink.Parameter(ctrl_thrust_perturbation));
 
     % Run Simulation
     simOut = sim('MultirotorModel');
 
-    uavState = logsout.get('UAVState').Values;
-    pos = uavState.pos_vel;
+    pos_ts = logsout.get('X_e').Values;
+    finalXYZ = pos_ts.Data(end, :);
 
     goalXYZ = [-120, -12, 0];  % Target
-    finalXYZ = [pos.x.Data(end), pos.y.Data(end), pos.z.Data(end)];
-    errorVec = finalXYZ(1:2) - goalXYZ(1:2);
-    distanceError = norm(errorVec);
+    errorVec = finalXYZ(1:2) - goalXYZ(1:2);  % Only x, y components
+    distanceError = norm(errorVec);           % Euclidean distance
     errors(i) = distanceError;
 
     % Calculate wind magnitude
@@ -132,6 +155,7 @@ for i = 1:numRuns
     % Log run data
     results(i) = struct( ...
         'mass', input_mass, ...
+        'perturbation', abs(mass_perturbation)+abs(thrust_perturbation), ...
         'wind', baseWind, ...
         'windMag', windMagnitude, ...
         'motor_delay', motor_delay_time, ...
@@ -145,29 +169,97 @@ for i = 1:numRuns
     disp(windMagnitude);
     disp(finalXYZ());
     disp(distanceError);
+    %clear simOut logsout pos_ts
 end
 
 % Close old figures
 close all;
 
 % Plot Error Distribution
-figure;
-histogram(errors, 'Normalization', 'probability', 'BinWidth', 0.1);
-xlabel('Landing Error (meters)');
-ylabel('Probability Density');
-title(sprintf('Monte Carlo Error Distribution (%d runs)', numRuns));
-grid on;
+% figure;
+% histogram(errors, 'Normalization', 'probability', 'BinWidth', 0.1);
+% xlabel('Landing Error (meters)');
+% ylabel('Probability Density');
+% title(sprintf('Monte Carlo Error Distribution (%d runs)', numRuns));
+% grid on;
 
-% Plot Wind vs. Mass with Success/Failure
+%% === Extract data ===
 massVals = [results.mass];
 windMags = [results.windMag];
-statuses = [results.status];
- 
+perturbationVals = [results.perturbation] * 100;  % convert to %
+
+statuses = [results.status];  % 1=success, 0=failure
+
+% === Center point ===
+centerMass = 3;
+centerWind = 0;
+centerPert = 0;
+
+% === Max caps ===
+massCap = 6.3;
+
+% === Search ranges ===
+radiiStepsX = linspace(0.5, massCap - centerMass, 20);  % mass (to cap)
+radiiStepsY = linspace(0.5, 10, 20);                   % wind
+radiiStepsZ = linspace(0.5, 20, 40);                  % perturbation
+
+% === Initialize search ===
+maxVolume = -inf;
+bestRx = NaN; bestRy = NaN; bestRz = NaN;
+bestFrac = 0;
+for rx = radiiStepsX
+    for ry = radiiStepsY
+        for rz = radiiStepsZ
+            insideIdx = ((massVals - centerMass) / rx).^2 + ...
+                        ((windMags - centerWind) / ry).^2 + ...
+                        ((perturbationVals - centerPert) / rz).^2 <= 1;
+            numInside = sum(insideIdx);
+            if numInside < 10, continue; end
+            numSuccess = sum(statuses(insideIdx) == 1);
+            fracSuccess = numSuccess / numInside;
+            volume = (4/3) * pi * rx * ry * rz;
+            if fracSuccess >= 0.9 && volume > maxVolume
+                bestRx = rx; bestRy = ry; bestRz = rz;
+                maxVolume = volume;
+                bestFrac = fracSuccess;
+            end
+        end
+    end
+end
+
+fprintf('Selected ellipsoid: rx=%.2f, ry=%.2f, rz=%.2f | Success inside: %.1f%%\n', ...
+        bestRx, bestRy, bestRz, bestFrac * 100);
+
+% === Plot 3D scatter ===
 figure;
-scatter(massVals(statuses==1), windMags(statuses==1), 60, 'g', 'filled'); hold on;
-scatter(massVals(statuses==0), windMags(statuses==0), 60, 'r', 'filled');
+scatter3(massVals(statuses==1), windMags(statuses==1), perturbationVals(statuses==1), ...
+    40, 'g', 'filled'); hold on;
+scatter3(massVals(statuses==0), windMags(statuses==0), perturbationVals(statuses==0), ...
+    40, 'r', 'filled');
+
 xlabel('Mass (kg)');
 ylabel('Wind+Gust Magnitude (m/s)');
-title('Success vs. Failure by Mass and Wind');
-legend('Success', 'Failure');
+zlabel('Perturbation (%)');
+title('Success vs. Failure with Adaptive Ellipsoid');
 grid on;
+legend('Success', 'Failure');
+view(135, 25);
+xlim([3 7]);
+ylim([0 10]);
+zlim([0 20]);
+set(gca, 'XDir','reverse');
+
+% === Draw ellipsoid ===
+[ex, ey, ez] = sphere(50);
+XS = bestRx * ex + centerMass;
+YS = bestRy * ey + centerWind;
+ZS = bestRz * ez + centerPert;
+
+% Apply caps to ellipsoid surface (cut off negative + mass cap)
+XS(XS < centerMass) = NaN;
+YS(YS < centerWind) = NaN;
+ZS(ZS < centerPert) = NaN;
+XS(XS > massCap) = NaN;
+
+% Plot
+surf(XS, YS, ZS, 'FaceAlpha', 0.2, 'EdgeColor', 'none', 'FaceColor', [0.4 0.6 1]);
