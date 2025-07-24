@@ -60,10 +60,10 @@ for i = 1:numRuns
     % Randomized Parameters
 
     % Random perturbation between -10% and +10%
-    mass_perturbation = 0;%(rand() * 0.2) - 0.1;  % range [-0.1, +0.1]
+    mass_perturbation = (rand() * 0.2) - 0.1;  % range [-0.1, +0.1]
 
     % Mass (scaled from 3–8 kg to Simulink model input)
-    input_mass = 6;%3 + (7 - 3) * rand();
+    input_mass = 3 + (7 - 3) * rand();
     mass_param = Simulink.Parameter(input_mass);
     mass_param.CoderInfo.StorageClass = 'ExportedGlobal';
     assignin('base', 'mass_param', mass_param);
@@ -83,8 +83,8 @@ for i = 1:numRuns
     inertia_matrix = diag([Ixx, Iyy, Izz]);
     assignin('base', 'inertia_param', Simulink.Parameter(inertia_matrix));
 
-    % Base Wind (±7, ±7, ±2)
-    baseWindRange = [0;0;0];%[8; 8; 2];
+    % Base Wind (±8, ±8, ±2)
+    baseWindRange = [0; 0; 0];
     baseWind = baseWindRange .* (2 * rand(3,1) - 1);  % [-7, 7], [-7, 7], [-2, 2]
     
     % Time setup
@@ -104,8 +104,6 @@ for i = 1:numRuns
     windTotal = [baseWind(1) + gustX;
                  baseWind(2) + gustY;
                  baseWind(3) + gustZ]';
-    
-    % Package
     wind_param = timeseries(windTotal, t');
     assignin('base', 'wind_param', wind_param);
 
@@ -133,6 +131,35 @@ for i = 1:numRuns
     thrust_perturbation = 0;%(rand() * 0.2) - 0.1;  % range [-0.1, +0.1]
     ctrl_thrust_perturbation = 1 + thrust_perturbation;
     assignin('base', 'ctrl_thrust_perturbation_param', Simulink.Parameter(ctrl_thrust_perturbation));
+
+    % Bird generation
+    mid = [-119, -40, -14.7];
+    
+    % Generate direction vector (2D random angle + vertical variation)
+    angle = 2 * pi * rand;
+    dir2D = [cos(angle), sin(angle)];
+    dz = (rand - 0.5) * 6;  % vertical span ±3 m
+    
+    % Distance to span across path
+    distance = 25 + 5 * rand;  % 25–30 meters
+    
+    % Construct full direction vector
+    dir = [dir2D * distance, dz];
+    
+    % Start/end positions centered around mid
+    bird_start = mid - 0.5 * dir;
+    bird_end   = mid + 0.5 * dir;
+    
+    % Time to go from start to end (one-way)
+    half_cycle = 10 + 10 * rand;  % 10–205 seconds
+    
+    % Full cycle time (back and forth)
+    bird_cycle = 2 * half_cycle;
+    
+    % Export to base workspace
+    assignin('base', 'bird_start', bird_start);
+    assignin('base', 'bird_end', bird_end);
+    assignin('base', 'bird_cycle', bird_cycle);
 
     % Run Simulation
     simOut = sim('MultirotorModel');
