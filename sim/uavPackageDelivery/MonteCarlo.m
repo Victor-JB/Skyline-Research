@@ -37,9 +37,9 @@ load_system('MultirotorModel');
 set_param('MultirotorModel','EnablePacing', 'off');
 
 % Simulation Stop Time
-simTime = 75;
+simTime = 120;
 
-numRuns = 1;  % Set how many runs you want
+numRuns = 50;  % Set how many runs you want
 
 errors = zeros(1, numRuns);
  results = repmat(struct( ...
@@ -60,7 +60,7 @@ for i = 1:numRuns
     % Randomized Parameters
 
     % Random perturbation between -10% and +10%
-    mass_perturbation = (rand() * 0.2) - 0.1;  % range [-0.1, +0.1]
+    mass_perturbation = 0;%(rand() * 0.2) - 0.1;  % range [-0.1, +0.1]
 
     % Mass (scaled from 3–8 kg to Simulink model input)
     input_mass = 3 + (7 - 3) * rand();
@@ -84,7 +84,7 @@ for i = 1:numRuns
     assignin('base', 'inertia_param', Simulink.Parameter(inertia_matrix));
 
     % Base Wind (±8, ±8, ±2)
-    baseWindRange = [0; 0; 0];
+    baseWindRange = [8; 8; 2];
     baseWind = baseWindRange .* (2 * rand(3,1) - 1);  % [-7, 7], [-7, 7], [-2, 2]
     
     % Time setup
@@ -134,29 +134,19 @@ for i = 1:numRuns
 
     % Bird generation
     mid = [-119, -40, -14.7];
-    
-    % Generate direction vector (2D random angle + vertical variation)
+
     angle = 2 * pi * rand;
     dir2D = [cos(angle), sin(angle)];
     dz = (rand - 0.5) * 6;  % vertical span ±3 m
-    
-    % Distance to span across path
+
     distance = 25 + 5 * rand;  % 25–30 meters
-    
-    % Construct full direction vector
     dir = [dir2D * distance, dz];
-    
-    % Start/end positions centered around mid
     bird_start = mid - 0.5 * dir;
     bird_end   = mid + 0.5 * dir;
     
-    % Time to go from start to end (one-way)
-    half_cycle = 10 + 10 * rand;  % 10–205 seconds
-    
-    % Full cycle time (back and forth)
+    half_cycle = 10 + 10 * rand;  % 10–20 seconds
     bird_cycle = 2 * half_cycle;
-    
-    % Export to base workspace
+
     assignin('base', 'bird_start', bird_start);
     assignin('base', 'bird_end', bird_end);
     assignin('base', 'bird_cycle', bird_cycle);
@@ -177,7 +167,7 @@ for i = 1:numRuns
     windMagnitude = rms(windXYMag); % root mean square over time
 
     % Success/failure: within 3m and above ground
-    status = (distanceError <= 5);
+    status = (distanceError <= 3);
 
     % Log run data
     results(i) = struct( ...
@@ -202,14 +192,6 @@ end
 % Close old figures
 close all;
 
-% Plot Error Distribution
-% figure;
-% histogram(errors, 'Normalization', 'probability', 'BinWidth', 0.1);
-% xlabel('Landing Error (meters)');
-% ylabel('Probability Density');
-% title(sprintf('Monte Carlo Error Distribution (%d runs)', numRuns));
-% grid on;
-
 %% === Extract data ===
 massVals = [results.mass];
 windMags = [results.windMag];
@@ -227,7 +209,7 @@ massCap = 6.3;
 
 % === Search ranges ===
 radiiStepsX = linspace(0.5, massCap - centerMass, 20);  % mass (to cap)
-radiiStepsY = linspace(0.5, 10, 20);                   % wind
+radiiStepsY = linspace(0.5, 10, 24);                   % wind
 radiiStepsZ = linspace(0.5, 20, 40);                  % perturbation
 
 % === Initialize search ===
@@ -272,7 +254,7 @@ grid on;
 legend('Success', 'Failure');
 view(135, 25);
 xlim([3 7]);
-ylim([0 10]);
+ylim([0 12]);
 zlim([0 20]);
 set(gca, 'XDir','reverse');
 
