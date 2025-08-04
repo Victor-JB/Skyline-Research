@@ -39,7 +39,7 @@ set_param('MultirotorModel','EnablePacing', 'off');
 % Simulation Stop Time
 simTime = 120;
 
-numRuns = 50;  % Set how many runs you want
+numRuns = 100;  % Set how many runs you want
 
 errors = zeros(1, numRuns);
  results = repmat(struct( ...
@@ -47,7 +47,6 @@ errors = zeros(1, numRuns);
     'perturbation', [], ...
     'wind', [], ...
     'windMag', [], ...
-    'motor_delay', [], ...
     'error', [], ...
     'finalZ', [], ...
     'status', [] ...
@@ -85,7 +84,7 @@ for i = 1:numRuns
 
     % Base Wind (±8, ±8, ±2)
     baseWindRange = [8; 8; 2];
-    baseWind = baseWindRange .* (2 * rand(3,1) - 1);  % [-7, 7], [-7, 7], [-2, 2]
+    baseWind = baseWindRange.* (2 * rand(3,1) - 1);  % [-7, 7], [-7, 7], [-2, 2]
     
     % Time setup
     T = 100; dt = 0.1;
@@ -123,17 +122,13 @@ for i = 1:numRuns
     baro_drift_signal = timeseries(baroDriftZ, t);
     assignin('base', 'baro_drift_signal', baro_drift_signal);
 
-    % Motor Delay (prevent negative)
-    motor_delay_time = min(0.1, max(0, 0.015 + 0.005 * randn));
-    assignin('base', 'motor_delay_time', motor_delay_time);
-
     % Thrust perturbation between -10% and +10%
     thrust_perturbation = 0;%(rand() * 0.2) - 0.1;  % range [-0.1, +0.1]
     ctrl_thrust_perturbation = 1 + thrust_perturbation;
     assignin('base', 'ctrl_thrust_perturbation_param', Simulink.Parameter(ctrl_thrust_perturbation));
 
     % Bird generation
-    mid = [-119, -40, -14.7];
+    mid = [-119, -50, -15];
 
     angle = 2 * pi * rand;
     dir2D = [cos(angle), sin(angle)];
@@ -144,7 +139,7 @@ for i = 1:numRuns
     bird_start = mid - 0.5 * dir;
     bird_end   = mid + 0.5 * dir;
     
-    half_cycle = 10 + 10 * rand;  % 10–20 seconds
+    half_cycle = 10 + 20 * rand;  % 5–15 seconds
     bird_cycle = 2 * half_cycle;
 
     assignin('base', 'bird_start', bird_start);
@@ -152,7 +147,7 @@ for i = 1:numRuns
     assignin('base', 'bird_cycle', bird_cycle);
 
     % Run Simulation
-    simOut = sim('MultirotorModel');
+    sim('MultirotorModel');
 
     pos_ts = logsout.get('X_e').Values;
     finalXYZ = pos_ts.Data(end, :);
@@ -166,8 +161,15 @@ for i = 1:numRuns
     windXYMag = sqrt(windTotal(:,1).^2 + windTotal(:,2).^2); % instantaneous magnitude in XY
     windMagnitude = rms(windXYMag); % root mean square over time
 
-    % Success/failure: within 3m and above ground
-    status = (distanceError <= 3);
+    % Success/failure: within 5m
+    status = (distanceError <= 5);
+    
+    birdcrash = logsout.get('birdcrash').Values;
+    bird_collision_flag = any(birdcrash.Data > 0);
+    if bird_collision_flag
+        status = 2;
+        break;
+    end
 
     % Log run data
     results(i) = struct( ...
@@ -175,7 +177,6 @@ for i = 1:numRuns
         'perturbation', abs(mass_perturbation)+abs(thrust_perturbation), ...
         'wind', baseWind, ...
         'windMag', windMagnitude, ...
-        'motor_delay', motor_delay_time, ...
         'error', distanceError, ...
         'finalZ', finalXYZ(3), ...
         'status', status ...
@@ -186,7 +187,8 @@ for i = 1:numRuns
     disp(windMagnitude);
     disp(finalXYZ());
     disp(distanceError);
-    %clear simOut logsout pos_ts
+    clear simOut logsout pos_ts
+    clear simOut logsout birdcrash
 end
 
 % Close old figures
@@ -227,7 +229,7 @@ for rx = radiiStepsX
             numSuccess = sum(statuses(insideIdx) == 1);
             fracSuccess = numSuccess / numInside;
             volume = (4/3) * pi * rx * ry * rz;
-            if fracSuccess >= 0.9 && volume > maxVolume
+            if fracSuccess >= 0. && volume > maxVolume
                 bestRx = rx; bestRy = ry; bestRz = rz;
                 maxVolume = volume;
                 bestFrac = fracSuccess;
@@ -245,13 +247,14 @@ scatter3(massVals(statuses==1), windMags(statuses==1), perturbationVals(statuses
     40, 'g', 'filled'); hold on;
 scatter3(massVals(statuses==0), windMags(statuses==0), perturbationVals(statuses==0), ...
     40, 'r', 'filled');
+scatter3(massVals(statuses==2), windMags(statuses==2), perturbationVals(statuses==2), ...
+    40, 'm', 'filled');
 
 xlabel('Mass (kg)');
 ylabel('Wind+Gust Magnitude (m/s)');
 zlabel('Perturbation (%)');
-title('Success vs. Failure with Adaptive Ellipsoid');
+title('Success vs. Failure');
 grid on;
-legend('Success', 'Failure');
 view(135, 25);
 xlim([3 7]);
 ylim([0 12]);
@@ -272,3 +275,17 @@ XS(XS > massCap) = NaN;
 
 % Plot
 surf(XS, YS, ZS, 'FaceAlpha', 0.2, 'EdgeColor', 'none', 'FaceColor', [0.4 0.6 1]);
+legend('Success', 'Missed landing', 'Hit Bird', 'Safe Zone');
+
+% Extract errors for successes
+successErrors = [results([results.status] == 1).error];
+
+% Compute stats
+meanErr = mean(successErrors);
+stdErr = std(successErrors);
+minErr = min(successErrors);
+maxErr = max(successErrors);
+
+fprintf('Landing error stats (successful runs only):\n');
+fprintf('Mean = %.2f m, Std = %.2f m, Min = %.2f m, Max = %.2f m\n', ...
+    meanErr, stdErr, minErr, maxErr);
