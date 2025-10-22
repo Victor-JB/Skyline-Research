@@ -1,0 +1,141 @@
+%implements "chartSource" "C"
+%function ChartConfig(block, system) void
+  %createrecord chartConfiguration { ...
+          executeAtInitialization  0 ...
+  }
+  %return chartConfiguration
+%endfunction
+%function ChartDataMap(block, system) void
+  %createrecord ChartDataElements {\
+    NumChartData   17 \
+    ChartDataDefaults {\
+      RecordType   "ChartData"\
+      Dimensions   []\
+      IsTestPoint  0\
+    }\
+    ChartData {\
+      Name         "sf_internal_action_state_placeholder_data"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "GuidanceLogic.Takeoff.sf_internal_action_state_placeholder_data"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "sf_internal_action_state_placeholder_data"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "GuidanceLogic.WP.sf_internal_action_state_placeholder_data"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "sf_internal_action_state_placeholder_data"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "GuidanceLogic.Orbit.sf_internal_action_state_placeholder_data"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "sf_internal_action_state_placeholder_data"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "GuidanceLogic.Land.ToLand.sf_internal_action_state_placeholder_data"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "sf_internal_action_state_placeholder_data"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "GuidanceLogic.Land.Descend.sf_internal_action_state_placeholder_data"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "sfEvent"\
+      Description  "ActiveChartEvent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_active_c1_MultirotorModel"\
+      Description  "StateIsActive"\
+      SFName       "is_active_c1_MultirotorModel"\
+      Path         "is_active_c1_MultirotorModel"\
+      SrcLocation  ""\
+      IsTestPoint  1\
+    }\
+    ChartData {\
+      Name         "is_c1_MultirotorModel"\
+      Description  "StateActiveChild"\
+      SFName       "is_c1_MultirotorModel"\
+      Path         "is_c1_MultirotorModel"\
+      SrcLocation  ""\
+      IsTestPoint  1\
+    }\
+    ChartData {\
+      Name         "is_GuidanceLogic"\
+      Description  "StateActiveChild"\
+      SFName       "is_GuidanceLogic"\
+      Path         "GuidanceLogic.is_GuidanceLogic"\
+      SrcLocation  ""\
+      IsTestPoint  1\
+    }\
+    ChartData {\
+      Name         "is_Land"\
+      Description  "StateActiveChild"\
+      SFName       "is_Land"\
+      Path         "GuidanceLogic.Land.is_Land"\
+      SrcLocation  ""\
+      IsTestPoint  1\
+    }\
+    ChartData {\
+      Name         "Takeoff_execBlock"\
+      Description  "Unknown"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "WP_execBlock"\
+      Description  "Unknown"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "Orbit_execBlock"\
+      Description  "Unknown"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "ToLand_execBlock"\
+      Description  "Unknown"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "Descend_execBlock"\
+      Description  "Unknown"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "mode_prev"\
+      Description  "ChangeDetectionDoubleBuffer"\
+      SFName       ""\
+      Path         "mode"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "mode_start"\
+      Description  "ChangeDetectionDoubleBuffer"\
+      SFName       ""\
+      Path         "mode"\
+      SrcLocation  ""\
+    }\
+  }
+  %return ChartDataElements
+%endfunction
