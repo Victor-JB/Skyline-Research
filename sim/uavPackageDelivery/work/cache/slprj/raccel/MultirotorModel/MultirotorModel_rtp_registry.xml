@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MF0 version="1.1" packageUris="http://schema.mathworks.com/mf0/slsa_mm_param_rtp/R2023a">
+  <slsa.mm.param.rtp.RtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="5d5f906b-acc9-4c0b-8712-1053788f8d33">
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="a95abfc9-758f-473d-90c5-10489e647488"/>
+    <segmentIndex>17</segmentIndex>
+    <valueIndices>49</valueIndices>
+    <valueIndices>49</valueIndices>
+  </slsa.mm.param.rtp.RtpLocation>
+  <slsa.mm.param.rtp.Parameter type="slsa.mm.param.rtp.Parameter" uuid="a95abfc9-758f-473d-90c5-10489e647488">
+    <id type="slsa.mm.param.rtp.BlockParameterId" uuid="3db2d631-6576-490c-a373-314e4d0da545"/>
+    <rtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="5d5f906b-acc9-4c0b-8712-1053788f8d33"/>
+  </slsa.mm.param.rtp.Parameter>
+  <slsa.mm.param.rtp.RtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="c9e2aff1-0442-4659-831e-39d0f46b53c8">
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="71fce271-3842-4524-a6af-71c280bd1794"/>
+    <segmentIndex>17</segmentIndex>
+    <valueIndices>24</valueIndices>
+    <valueIndices>24</valueIndices>
+  </slsa.mm.param.rtp.RtpLocation>
+  <slsa.mm.param.rtp.Parameter type="slsa.mm.param.rtp.Parameter" uuid="71fce271-3842-4524-a6af-71c280bd1794">
+    <id type="slsa.mm.param.rtp.BlockParameterId" uuid="e5dac145-da57-4625-aeaa-81c088f87645"/>
+    <rtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="c9e2aff1-0442-4659-831e-39d0f46b53c8"/>
+  </slsa.mm.param.rtp.Parameter>
+  <slsa.mm.param.rtp.RtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="8f6ec5f1-1d82-4a7e-a47a-a88bd329aead">
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="18f6c5cd-dea8-4122-b8bf-912ca11e4acf"/>
+    <segmentIndex>17</segmentIndex>
+    <valueIndices>15</valueIndices>
+    <valueIndices>15</valueIndices>
+  </slsa.mm.param.rtp.RtpLocation>
+  <slsa.mm.param.rtp.Parameter type="slsa.mm.param.rtp.Parameter" uuid="18f6c5cd-dea8-4122-b8bf-912ca11e4acf">
+    <id type="slsa.mm.param.rtp.BlockParameterId" uuid="30ad8033-0f98-4d6e-8824-55be49ac0092"/>
+    <rtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="8f6ec5f1-1d82-4a7e-a47a-a88bd329aead"/>
+  </slsa.mm.param.rtp.Parameter>
+  <slsa.mm.param.rtp.BlockParameterId type="slsa.mm.param.rtp.BlockParameterId" uuid="5cf559bd-a6ea-435c-bb63-72ffbb4180fd">
+    <blockPath>MultirotorModel/Inner Loop and Plant Model/High-FidelityModel/Control System/Controller/gravity feedforward//equilibrium thrust/SaturationThrust1</blockPath>
+    <name>UpperLimit</name>
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="25dac91f-0117-4276-8aa1-e6df00981d0b"/>
+  </slsa.mm.param.rtp.BlockParameterId>
+  <slsa.mm.param.rtp.Parameter type="slsa.mm.param.rtp.Parameter" uuid="25dac91f-0117-4276-8aa1-e6df00981d0b">
+    <id type="slsa.mm.param.rtp.BlockParameterId" uuid="5cf559bd-a6ea-435c-bb63-72ffbb4180fd"/>
+    <rtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="cfe3484d-46bd-4aa4-88f0-b3c712a1d45e"/>
+  </slsa.mm.param.rtp.Parameter>
+  <slsa.mm.param.rtp.RtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="2ce34ec7-c9c3-4348-8e74-9256d547e702">
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="2cae1d28-74ad-4a32-ab8a-745e71047e4f"/>
+    <segmentIndex>7</segmentIndex>
+    <valueIndices>4055</valueIndices>
+    <valueIndices>4057</valueIndices>
+  </slsa.mm.param.rtp.RtpLocation>
+  <slsa.mm.param.rtp.RtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="9ed23628-2f7b-4d9d-84e3-e19801fe7c51">
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="5db22fc5-ede1-4756-91e0-7d7792cd50c4"/>
+    <segmentIndex>14</segmentIndex>
+    <valueIndices>2</valueIndices>
+    <valueIndices>2</valueIndices>
+  </slsa.mm.param.rtp.RtpLocation>
+  <slsa.mm.param.rtp.Parameter type="slsa.mm.param.rtp.Parameter" uuid="5db22fc5-ede1-4756-91e0-7d7792cd50c4">
+    <id type="slsa.mm.param.rtp.BlockParameterId" uuid="2b8860ed-61db-453e-8e75-ffd0bd145121"/>
+    <rtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="9ed23628-2f7b-4d9d-84e3-e19801fe7c51"/>
+  </slsa.mm.param.rtp.Parameter>
+  <slsa.mm.param.rtp.BlockParameterId type="slsa.mm.param.rtp.BlockParameterId" uuid="1231f0f1-4e3e-4daa-899a-449784785f44">
+    <blockPath>MultirotorModel/Inner Loop and Plant Model/High-FidelityModel/Plant Model/AC model/Motor Forces and Torques/For Each Subsystem/RotorDynamics/R3</blockPath>
+    <name>Gain</name>
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="9d26f5df-7d65-429d-b9bb-cf9f42846c1a"/>
+  </slsa.mm.param.rtp.BlockParameterId>
+  <slsa.mm.param.rtp.Parameter type="slsa.mm.param.rtp.Parameter" uuid="9d26f5df-7d65-429d-b9bb-cf9f42846c1a">
+    <id type="slsa.mm.param.rtp.BlockParameterId" uuid="1231f0f1-4e3e-4daa-899a-449784785f44"/>
+    <rtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="9d6d6bc3-4bff-47c1-bba3-deaf9c9386c7"/>
+  </slsa.mm.param.rtp.Parameter>
+  <slsa.mm.param.rtp.Parameter type="slsa.mm.param.rtp.Parameter" uuid="dbdbe3e6-e3e9-46cb-85a8-f288f3b21f7a">
+    <id type="slsa.mm.param.rtp.BlockParameterId" uuid="52cff48b-1706-431c-9468-5d6e08c81c51"/>
+    <rtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="5d8c947b-c6c5-4136-a006-534ad2ab8d75"/>
+  </slsa.mm.param.rtp.Parameter>
+  <slsa.mm.param.rtp.RtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="e70d7958-28f7-4280-bdfc-a46cdff13276">
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="fca2a0c6-770c-4187-ba70-2ff310d10d52"/>
+    <segmentIndex>7</segmentIndex>
+    <valueIndices>4076</valueIndices>
+    <valueIndices>4076</valueIndices>
+  </slsa.mm.param.rtp.RtpLocation>
+  <slsa.mm.param.rtp.Parameter type="slsa.mm.param.rtp.Parameter" uuid="fca2a0c6-770c-4187-ba70-2ff310d10d52">
+    <id type="slsa.mm.param.rtp.BlockParameterId" uuid="f53acb31-7f3c-4a48-985e-fc6ac831959c"/>
+    <rtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="e70d7958-28f7-4280-bdfc-a46cdff13276"/>
+  </slsa.mm.param.rtp.Parameter>
+  <slsa.mm.param.rtp.RtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="559d39a6-2430-4b69-aa79-500446cd1f44">
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="fe36524d-8b05-4d7a-8cb8-f1de08ae4ae4"/>
+    <segmentIndex>7</segmentIndex>
+    <valueIndices>4074</valueIndices>
+    <valueIndices>4074</valueIndices>
+  </slsa.mm.param.rtp.RtpLocation>
+  <slsa.mm.param.rtp.Parameter type="slsa.mm.param.rtp.Parameter" uuid="fe36524d-8b05-4d7a-8cb8-f1de08ae4ae4">
+    <id type="slsa.mm.param.rtp.BlockParameterId" uuid="9e11967f-de18-4d59-90cc-fa7eebd09dd4"/>
+    <rtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="559d39a6-2430-4b69-aa79-500446cd1f44"/>
+  </slsa.mm.param.rtp.Parameter>
+  <slsa.mm.param.rtp.BlockParameterId type="slsa.mm.param.rtp.BlockParameterId" uuid="0a9c65a4-1d0a-47bd-87d1-6ff770f8a90e">
+    <blockPath>MultirotorModel/Inner Loop and Plant Model/High-FidelityModel/Plant Model/AC model/Motor Forces and Torques/D4</blockPath>
+    <name>Value</name>
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="2cae1d28-74ad-4a32-ab8a-745e71047e4f"/>
+  </slsa.mm.param.rtp.BlockParameterId>
+  <slsa.mm.param.rtp.Parameter type="slsa.mm.param.rtp.Parameter" uuid="2ad6e9f8-3c38-4bce-b8b9-c2d4b440fa7b">
+    <id type="slsa.mm.param.rtp.BlockParameterId" uuid="c2747a30-95fe-4e5e-b90c-2f9d7262b5ae"/>
+    <rtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="6989c769-d04d-4c0a-80a6-fcb1749de547"/>
+  </slsa.mm.param.rtp.Parameter>
+  <slsa.mm.param.rtp.RtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="cfe3484d-46bd-4aa4-88f0-b3c712a1d45e">
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="25dac91f-0117-4276-8aa1-e6df00981d0b"/>
+    <segmentIndex>17</segmentIndex>
+    <valueIndices>14</valueIndices>
+    <valueIndices>14</valueIndices>
+  </slsa.mm.param.rtp.RtpLocation>
+  <slsa.mm.param.rtp.RtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="1435a384-7cc2-48ff-b625-9be6d180cbba">
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="f9cf32e6-0380-4346-9fb0-59759fcc7949"/>
+    <segmentIndex>7</segmentIndex>
+    <valueIndices>4049</valueIndices>
+    <valueIndices>4051</valueIndices>
+  </slsa.mm.param.rtp.RtpLocation>
+  <slsa.mm.param.rtp.BlockParameterId type="slsa.mm.param.rtp.BlockParameterId" uuid="52cff48b-1706-431c-9468-5d6e08c81c51">
+    <blockPath>MultirotorModel/Inner Loop and Plant Model/High-FidelityModel/Plant Model/AC model/Motor Forces and Torques/D1</blockPath>
+    <name>Value</name>
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="dbdbe3e6-e3e9-46cb-85a8-f288f3b21f7a"/>
+  </slsa.mm.param.rtp.BlockParameterId>
+  <slsa.mm.param.rtp.Parameter type="slsa.mm.param.rtp.Parameter" uuid="2cae1d28-74ad-4a32-ab8a-745e71047e4f">
+    <id type="slsa.mm.param.rtp.BlockParameterId" uuid="0a9c65a4-1d0a-47bd-87d1-6ff770f8a90e"/>
+    <rtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="2ce34ec7-c9c3-4348-8e74-9256d547e702"/>
+  </slsa.mm.param.rtp.Parameter>
+  <slsa.mm.param.rtp.RtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="6989c769-d04d-4c0a-80a6-fcb1749de547">
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="2ad6e9f8-3c38-4bce-b8b9-c2d4b440fa7b"/>
+    <segmentIndex>7</segmentIndex>
+    <valueIndices>4052</valueIndices>
+    <valueIndices>4054</valueIndices>
+  </slsa.mm.param.rtp.RtpLocation>
+  <slsa.mm.param.rtp.RtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="5d8c947b-c6c5-4136-a006-534ad2ab8d75">
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="dbdbe3e6-e3e9-46cb-85a8-f288f3b21f7a"/>
+    <segmentIndex>7</segmentIndex>
+    <valueIndices>4046</valueIndices>
+    <valueIndices>4048</valueIndices>
+  </slsa.mm.param.rtp.RtpLocation>
+  <slsa.mm.param.rtp.BlockParameterId type="slsa.mm.param.rtp.BlockParameterId" uuid="9e11967f-de18-4d59-90cc-fa7eebd09dd4">
+    <blockPath>MultirotorModel/Inner Loop and Plant Model/High-FidelityModel/Plant Model/Bus setup/Generate GPS Data/Scale and Assemble GPS Data /Flat Earth to LLA/LongLat_offset/Find Rn and Rm/Constant1</blockPath>
+    <name>Value</name>
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="fe36524d-8b05-4d7a-8cb8-f1de08ae4ae4"/>
+  </slsa.mm.param.rtp.BlockParameterId>
+  <slsa.mm.param.rtp.RtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="27aa9f04-c8e7-4112-a5a2-9cff51dcddfb">
+    <parameter type="slsa.mm.param.rtp.StructParameter" uuid="e817a9aa-a006-46be-b2c9-1d9b5a1d7f10"/>
+    <segmentIndex>1</segmentIndex>
+    <valueIndices>0</valueIndices>
+    <valueIndices>0</valueIndices>
+  </slsa.mm.param.rtp.RtpLocation>
+  <slsa.mm.param.rtp.RtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="83c72a28-3c58-4104-8439-a4b08fab1dbd">
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="9a916c69-bc5e-4630-b7ca-c8cc2907f9af"/>
+    <segmentIndex>3</segmentIndex>
+    <valueIndices>4</valueIndices>
+    <valueIndices>4</valueIndices>
+  </slsa.mm.param.rtp.RtpLocation>
+  <slsa.mm.param.rtp.BlockParameterId type="slsa.mm.param.rtp.BlockParameterId" uuid="e5dac145-da57-4625-aeaa-81c088f87645">
+    <blockPath>MultirotorModel/Inner Loop and Plant Model/High-FidelityModel/Control System/Controller/thrustsToMotorCommands/ThrustToMotorCommand</blockPath>
+    <name>Gain</name>
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="71fce271-3842-4524-a6af-71c280bd1794"/>
+  </slsa.mm.param.rtp.BlockParameterId>
+  <slsa.mm.param.rtp.RtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="d2a3fd3f-8e7e-4dbf-875b-f54a564111ca">
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="7ae3b9eb-66bc-4f07-99a0-688f1b06a425"/>
+    <segmentIndex>3</segmentIndex>
+    <valueIndices>3</valueIndices>
+    <valueIndices>3</valueIndices>
+  </slsa.mm.param.rtp.RtpLocation>
+  <slsa.mm.param.rtp.BlockParameterId type="slsa.mm.param.rtp.BlockParameterId" uuid="30ad8033-0f98-4d6e-8824-55be49ac0092">
+    <blockPath>MultirotorModel/Inner Loop and Plant Model/High-FidelityModel/Control System/Controller/gravity feedforward//equilibrium thrust/SaturationThrust1</blockPath>
+    <name>LowerLimit</name>
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="18f6c5cd-dea8-4122-b8bf-912ca11e4acf"/>
+  </slsa.mm.param.rtp.BlockParameterId>
+  <slsa.mm.param.rtp.Parameter type="slsa.mm.param.rtp.Parameter" uuid="f9cf32e6-0380-4346-9fb0-59759fcc7949">
+    <id type="slsa.mm.param.rtp.BlockParameterId" uuid="04bab89e-b373-4e1f-b648-26799d05fca0"/>
+    <rtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="1435a384-7cc2-48ff-b625-9be6d180cbba"/>
+  </slsa.mm.param.rtp.Parameter>
+  <slsa.mm.param.rtp.StructParameter type="slsa.mm.param.rtp.StructParameter" uuid="61ef1fe0-e22d-4556-8a99-07ddc3b54150">
+    <id type="slsa.mm.param.rtp.VariableId" uuid="44541992-48a7-46e4-9a5c-8905aa486af3"/>
+    <rtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="affd87dd-a1ad-4e86-9e87-f1052e029d77"/>
+  </slsa.mm.param.rtp.StructParameter>
+  <slsa.mm.param.rtp.RtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="0eeb07c7-3190-4be0-907c-c85129947165">
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="aceff268-9823-48ed-b1c9-c246df0bc905"/>
+    <segmentIndex>3</segmentIndex>
+    <valueIndices>2</valueIndices>
+    <valueIndices>2</valueIndices>
+  </slsa.mm.param.rtp.RtpLocation>
+  <slsa.mm.param.rtp.BlockParameterId type="slsa.mm.param.rtp.BlockParameterId" uuid="3db2d631-6576-490c-a373-314e4d0da545">
+    <blockPath>MultirotorModel/Inner Loop and Plant Model/High-FidelityModel/Control System/Controller/gravity feedforward//equilibrium thrust/w1</blockPath>
+    <name>Value</name>
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="a95abfc9-758f-473d-90c5-10489e647488"/>
+  </slsa.mm.param.rtp.BlockParameterId>
+  <slsa.mm.param.rtp.Parameter type="slsa.mm.param.rtp.Parameter" uuid="7ae3b9eb-66bc-4f07-99a0-688f1b06a425">
+    <id type="slsa.mm.param.rtp.VariableId" uuid="8a5f7dce-68db-4519-9f9f-c3cf3a583a9f"/>
+    <rtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="d2a3fd3f-8e7e-4dbf-875b-f54a564111ca"/>
+  </slsa.mm.param.rtp.Parameter>
+  <slsa.mm.param.rtp.VariableId type="slsa.mm.param.rtp.VariableId" uuid="8a5f7dce-68db-4519-9f9f-c3cf3a583a9f">
+    <workspaceName>global-workspace</workspaceName>
+    <name>motor_delay_time</name>
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="7ae3b9eb-66bc-4f07-99a0-688f1b06a425"/>
+  </slsa.mm.param.rtp.VariableId>
+  <slsa.mm.param.rtp.BlockParameterId type="slsa.mm.param.rtp.BlockParameterId" uuid="2b8860ed-61db-453e-8e75-ffd0bd145121">
+    <blockPath>MultirotorModel/Inner Loop and Plant Model/High-FidelityModel/Plant Model/AC model/Motor Forces and Torques/For Each Subsystem/RotorDynamics/R4</blockPath>
+    <name>Gain</name>
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="5db22fc5-ede1-4756-91e0-7d7792cd50c4"/>
+  </slsa.mm.param.rtp.BlockParameterId>
+  <slsa.mm.param.rtp.RtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="9d6d6bc3-4bff-47c1-bba3-deaf9c9386c7">
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="9d26f5df-7d65-429d-b9bb-cf9f42846c1a"/>
+    <segmentIndex>14</segmentIndex>
+    <valueIndices>1</valueIndices>
+    <valueIndices>1</valueIndices>
+  </slsa.mm.param.rtp.RtpLocation>
+  <slsa.mm.param.rtp.Parameter type="slsa.mm.param.rtp.Parameter" uuid="9a916c69-bc5e-4630-b7ca-c8cc2907f9af">
+    <id type="slsa.mm.param.rtp.VariableId" uuid="f3005e0a-a11d-4460-9d0d-87c5f739394d"/>
+    <rtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="83c72a28-3c58-4104-8439-a4b08fab1dbd"/>
+  </slsa.mm.param.rtp.Parameter>
+  <slsa.mm.param.rtp.Parameter type="slsa.mm.param.rtp.Parameter" uuid="aceff268-9823-48ed-b1c9-c246df0bc905">
+    <id type="slsa.mm.param.rtp.VariableId" uuid="1b25ecee-add8-4eef-a965-ada447f4b394"/>
+    <rtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="0eeb07c7-3190-4be0-907c-c85129947165"/>
+  </slsa.mm.param.rtp.Parameter>
+  <slsa.mm.param.rtp.Parameter type="slsa.mm.param.rtp.Parameter" uuid="335311a6-83ae-42bc-a06d-94a2ac8a556f">
+    <id type="slsa.mm.param.rtp.VariableId" uuid="8147be9f-87e2-44e1-b4b6-d088b038b43a"/>
+    <rtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="b7c311de-445e-4b60-bba7-f6b05874699a"/>
+  </slsa.mm.param.rtp.Parameter>
+  <slsa.mm.param.rtp.RtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="b7c311de-445e-4b60-bba7-f6b05874699a">
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="335311a6-83ae-42bc-a06d-94a2ac8a556f"/>
+    <segmentIndex>3</segmentIndex>
+    <valueIndices>0</valueIndices>
+    <valueIndices>1</valueIndices>
+  </slsa.mm.param.rtp.RtpLocation>
+  <slsa.mm.param.rtp.VariableId type="slsa.mm.param.rtp.VariableId" uuid="8147be9f-87e2-44e1-b4b6-d088b038b43a">
+    <workspaceName>global-workspace</workspaceName>
+    <name>uavIC_latLon</name>
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="335311a6-83ae-42bc-a06d-94a2ac8a556f"/>
+  </slsa.mm.param.rtp.VariableId>
+  <slsa.mm.param.rtp.BlockParameterId type="slsa.mm.param.rtp.BlockParameterId" uuid="c2747a30-95fe-4e5e-b90c-2f9d7262b5ae">
+    <blockPath>MultirotorModel/Inner Loop and Plant Model/High-FidelityModel/Plant Model/AC model/Motor Forces and Torques/D3</blockPath>
+    <name>Value</name>
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="2ad6e9f8-3c38-4bce-b8b9-c2d4b440fa7b"/>
+  </slsa.mm.param.rtp.BlockParameterId>
+  <slsa.mm.param.rtp.RtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="8dfd2e9e-659f-4d67-b200-3e137ccc9dcd">
+    <parameter type="slsa.mm.param.rtp.StructParameter" uuid="60a11e58-2256-40d9-9a06-85b43b36bb50"/>
+    <segmentIndex>2</segmentIndex>
+    <valueIndices>0</valueIndices>
+    <valueIndices>41</valueIndices>
+  </slsa.mm.param.rtp.RtpLocation>
+  <slsa.mm.param.rtp.VariableId type="slsa.mm.param.rtp.VariableId" uuid="f3005e0a-a11d-4460-9d0d-87c5f739394d">
+    <workspaceName>global-workspace</workspaceName>
+    <name>startFlightTime</name>
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="9a916c69-bc5e-4630-b7ca-c8cc2907f9af"/>
+  </slsa.mm.param.rtp.VariableId>
+  <slsa.mm.param.rtp.VariableId type="slsa.mm.param.rtp.VariableId" uuid="1b25ecee-add8-4eef-a965-ada447f4b394">
+    <workspaceName>global-workspace</workspaceName>
+    <name>mass_param</name>
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="aceff268-9823-48ed-b1c9-c246df0bc905"/>
+  </slsa.mm.param.rtp.VariableId>
+  <slsa.mm.param.rtp.VariableId type="slsa.mm.param.rtp.VariableId" uuid="c0cd5df6-1bae-40b7-a87b-bce09233b6ec">
+    <workspaceName>global-workspace</workspaceName>
+    <name>baseMission</name>
+    <parameter type="slsa.mm.param.rtp.StructParameter" uuid="60a11e58-2256-40d9-9a06-85b43b36bb50"/>
+  </slsa.mm.param.rtp.VariableId>
+  <slsa.mm.param.rtp.ModelMetadata type="slsa.mm.param.rtp.ModelMetadata" uuid="833743a8-bf69-4322-96b1-782508c9fde1">
+    <modelName>MultirotorModel</modelName>
+  </slsa.mm.param.rtp.ModelMetadata>
+  <slsa.mm.param.rtp.StructParameter type="slsa.mm.param.rtp.StructParameter" uuid="60a11e58-2256-40d9-9a06-85b43b36bb50">
+    <id type="slsa.mm.param.rtp.VariableId" uuid="c0cd5df6-1bae-40b7-a87b-bce09233b6ec"/>
+    <rtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="8dfd2e9e-659f-4d67-b200-3e137ccc9dcd"/>
+  </slsa.mm.param.rtp.StructParameter>
+  <slsa.mm.param.rtp.VariableId type="slsa.mm.param.rtp.VariableId" uuid="557cc07d-5ce8-4384-ac69-c1617b96c337">
+    <workspaceName>global-workspace</workspaceName>
+    <name>initialConditions</name>
+    <parameter type="slsa.mm.param.rtp.StructParameter" uuid="e817a9aa-a006-46be-b2c9-1d9b5a1d7f10"/>
+  </slsa.mm.param.rtp.VariableId>
+  <slsa.mm.param.rtp.StructParameter type="slsa.mm.param.rtp.StructParameter" uuid="e817a9aa-a006-46be-b2c9-1d9b5a1d7f10">
+    <id type="slsa.mm.param.rtp.VariableId" uuid="557cc07d-5ce8-4384-ac69-c1617b96c337"/>
+    <rtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="27aa9f04-c8e7-4112-a5a2-9cff51dcddfb"/>
+  </slsa.mm.param.rtp.StructParameter>
+  <slsa.mm.param.rtp.BlockParameterId type="slsa.mm.param.rtp.BlockParameterId" uuid="04bab89e-b373-4e1f-b648-26799d05fca0">
+    <blockPath>MultirotorModel/Inner Loop and Plant Model/High-FidelityModel/Plant Model/AC model/Motor Forces and Torques/D2</blockPath>
+    <name>Value</name>
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="f9cf32e6-0380-4346-9fb0-59759fcc7949"/>
+  </slsa.mm.param.rtp.BlockParameterId>
+  <slsa.mm.param.rtp.VariableId type="slsa.mm.param.rtp.VariableId" uuid="44541992-48a7-46e4-9a5c-8905aa486af3">
+    <workspaceName>global-workspace</workspaceName>
+    <name>Vehicle</name>
+    <parameter type="slsa.mm.param.rtp.StructParameter" uuid="61ef1fe0-e22d-4556-8a99-07ddc3b54150"/>
+  </slsa.mm.param.rtp.VariableId>
+  <slsa.mm.param.rtp.BlockParameterId type="slsa.mm.param.rtp.BlockParameterId" uuid="f53acb31-7f3c-4a48-985e-fc6ac831959c">
+    <blockPath>MultirotorModel/Inner Loop and Plant Model/High-FidelityModel/Plant Model/Bus setup/Generate GPS Data/Scale and Assemble GPS Data /Flat Earth to LLA/LongLat_offset/Find Rn and Rm/e/Constant</blockPath>
+    <name>Value</name>
+    <parameter type="slsa.mm.param.rtp.Parameter" uuid="fca2a0c6-770c-4187-ba70-2ff310d10d52"/>
+  </slsa.mm.param.rtp.BlockParameterId>
+  <slsa.mm.param.rtp.RtpLocation type="slsa.mm.param.rtp.RtpLocation" uuid="affd87dd-a1ad-4e86-9e87-f1052e029d77">
+    <parameter type="slsa.mm.param.rtp.StructParameter" uuid="61ef1fe0-e22d-4556-8a99-07ddc3b54150"/>
+    <valueIndices>0</valueIndices>
+    <valueIndices>0</valueIndices>
+  </slsa.mm.param.rtp.RtpLocation>
+</MF0>
