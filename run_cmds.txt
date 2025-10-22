@@ -1,0 +1,34 @@
+Note dependencies:
+1. Need UAV drone delivery
+2. also need Aerospace Blockset to do cool airplane math
+- https://www.mathworks.com/products/aerospace-blockset.html
+
+Following: https://www.mathworks.com/help/uav/ug/uav-package-delivery.html
+
+openExample('uav/UAVPackageDeliveryExample');
+prj = openProject('uavPackageDelivery');
+
+Click "getting started" shortcut
+** had to address Failed to load library 'aerolibconvert2' referenced by **
+
+Install QGround control and click Connecting to a GCS, then upload flight plan and run it
+
+Click Setting a Cuboid Scenario -- also sets up lidar point cloud to "see" cuboid obstacles
+** had to address Failed to load library 'robotalgslib' referenced by **
+** Cannot find library called 'robotalgslib'. To use this library, install one of the following 
+products: Navigation Toolbox Robotics System Toolbox **
+
+Error prior to running photorealistic:
+Unable to simulate Model block 'uavPackageDelivery/External Sensors - Lidar & Camera'.  
+Caused by:
+MATLAB System block 'photorealisticSimulationEngi/SimulationEnvironmentVariant/PhotorealisticQuadrotor/Simulation 3D Scene Configuration1/Simulation 3D Engine' error occurred when invoking 'resetImpl' method of 'Simulation3DEngine'. The error was thrown from '
+ 'C:\Program Files\MATLAB\R2024b\toolbox\shared\sim3d\sim3d\+sim3d\+engine\EngineInterface.p' at line 0
+ 'C:\Program Files\MATLAB\R2024b\toolbox\shared\sim3d\sim3d\+sim3d\+engine\Engine.p' at line 0
+ 'C:\Program Files\MATLAB\R2024b\toolbox\shared\sim3d\sim3d\+sim3d\World.p' at line 0
+ 'C:\Program Files\MATLAB\R2024b\toolbox\shared\sim3dblks\sim3dblks\Simulation3DEngine.p' at line 0
+ 'C:\Program Files\MATLAB\R2024b\toolbox\simulink\ui\studio\config\m\+SLStudio\StartPauseContinue.p' at line 0
+ 'C:\Program Files\MATLAB\R2024b\toolbox\simulink\ui\studio\config\m\+SLStudio\ToolBars.p' at line 0'.
+3D simulation engine executable failed to start. Address the issue described in the dialog box.
+
+Before running photorealistic simulation setting, need to install Unreal Engine compatible with Simulink
+Unfortunately from my research, only available / primarily supported on windows
