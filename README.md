@@ -1,5 +1,5 @@
 # Project Skyline · Safe and Intelligent Autonomy for Aerial Delivery
-Santa Clara University · Burak Kürkçü Research Group
+Santa Clara University
 
 > A research initiative developing verifiable, safety-critical autonomy for small UAVs operating in human environments.
 
