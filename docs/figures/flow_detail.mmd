@@ -1,0 +1,31 @@
+flowchart TB
+  R["<b>MonteCarlo.m: randomize</b><br/>mass_param · wind_param · drift signals · bird path"]
+  SC["<b>MonteCarlo.m: score</b><br/>landing error from X_e · success ≤ 5 m · bird hit"]
+  EN["<b>Envelope</b><br/>ellipsoid + 3D scatter"]
+  SC --> EN
+  subgraph GL["Guidance Logic (Stateflow)"]
+    direction LR
+    WPS["baseMission<br/>waypoints"] --> PM["UAV Path<br/>Manager"] --> MS["Mode selector<br/>Takeoff → WP → Land"]
+    MS --> TL["Land.ToLand<br/>Waypoint Follower → LAP, Heading"]
+    BM["Bird Motion"] --> APF["APF_Avoidance<br/>corrects heading"]
+    TL --> APF
+    BM --> CR["crash? ≤ 0.5 m<br/>→ stop sim"]
+    FN["Corridor fence<br/>→ Status 2"]
+  end
+  subgraph IL["Robust control framework + plant"]
+    direction LR
+    PC["Position control<br/>ref = LAP + GPS drift"] --> AC["Attitude control"] --> MX["Mixer → motors"]
+    YC["Heading control<br/>ref = heading"] --> MX
+    MX --> MF["Motor forces<br/>× thrust perturbation"]
+    WD["Wind → body frame<br/>→ airspeed, drag"] --> SD["6-DOF<br/>mass = mass_param"]
+    MF --> SD --> IMU["gyro drift added<br/>→ UAV state, X_e"]
+  end
+  R ==> GL
+  TL -->|LAP| PC
+  APF -->|heading| YC
+  IMU -->|feedback| MS
+  IMU -.->|logsout| SC
+  classDef stock fill:#eef1f3,stroke:#8a96a0,color:#1b2329;
+  classDef ours fill:#fbefe3,stroke:#b8641a,color:#1b2329,stroke-width:2px;
+  class WPS,PM,MS,TL,AC,MX stock;
+  class R,SC,EN,BM,APF,CR,FN,PC,YC,MF,WD,SD,IMU ours;

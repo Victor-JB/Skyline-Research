@@ -1,0 +1,18 @@
+flowchart LR
+  R["<b>1 · Randomize</b><br/>payload 3–7 kg<br/>wind + gusts<br/>GPS / IMU / baro drift<br/>bird path"]
+  subgraph SIM["2 · Simulate one delivery (Simulink)"]
+    direction LR
+    M["Mission<br/>waypoints"] --> G["Guidance<br/>state machine"]
+    G --> A["APF<br/>avoidance"]
+    B["Moving<br/>bird"] --> A
+    A --> C["Robust control<br/>framework"]
+    C --> P["6-DOF plant<br/>+ wind, drag,<br/>sensor drift"]
+    P -->|feedback| G
+  end
+  S["<b>3 · Score</b><br/>landed ≤ 5 m?<br/>hit bird?<br/><i>repeat × N runs</i>"]
+  E["<b>4 · Envelope</b><br/>success vs<br/>mass × wind ×<br/>perturbation"]
+  R ==> SIM ==> S ==> E
+  classDef stock fill:#eef1f3,stroke:#8a96a0,color:#1b2329;
+  classDef ours fill:#fbefe3,stroke:#b8641a,color:#1b2329,stroke-width:2px;
+  class M,G,C stock;
+  class R,S,E,B,A,P ours;
